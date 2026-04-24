@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Task Form</title>
+</head>
+<body>
+
+<h1>Task Form</h1>
+
+<form th:action="@{/task/save}" th:object="${task}" method="post">
+
+  <input type="hidden" th:field="*{id}" />
+
+  <label>Description:</label>
+  <input type="text" th:field="*{description}" />
+  <br><br>
+
+  <label>Status:</label>
+  <select th:field="*{status}">
+    <option th:each="s : ${T(org.example.spring.entity.Status).values()}"
+            th:value="${s}"
+            th:text="${s}">
+    </option>
+  </select>
+
+  <br><br>
+
+  <button type="submit">Save</button>
+
+</form>
+
+<a th:href="@{/task}">Back</a>
+
+</body>
+</html>
